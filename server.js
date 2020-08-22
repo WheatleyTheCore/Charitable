@@ -19,7 +19,7 @@ const User = sequelize.define("user", {
 });
 
 (async () => {
-    await sequelize.sync({ force: true });
+    await sequelize.sync();
 })();
 
 const app = express();
@@ -30,7 +30,7 @@ const port = 3000;
 app.get('/', async (req, res) => {
     const users = await User.findAll();
     console.log(users)
-    res.send(users);
+    res.json({ users });
 })
 
 app.post('/create', async (req, res) => {
